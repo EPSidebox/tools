@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MSIDDV Thesis Handbook v.1</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ac:#c8102e;--bg:#fff;--bgs:#f7f6f3;--brd:#e5e2dc;--tx:#1a1a1a;--mt:#6b6b6b;--r:12px}
+body{font-family:'Lato','Segoe UI',system-ui,sans-serif;background:var(--bgs);color:var(--tx);line-height:1.7}
+.hdr{background:var(--bg);border-bottom:1px solid var(--brd);padding:16px 24px}
+.hdr-in{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.hdr-in .wm{font-size:.92em;font-weight:900;color:var(--tx)}
+.hdr-in .ver{font-size:.78em;font-weight:700;color:var(--mt);letter-spacing:.03em}
+.tbar{background:var(--bg);padding:36px 24px 28px;border-bottom:1px solid var(--brd)}
+.tbar-in{max-width:920px;margin:0 auto}
+.pre-t{font-size:.78em;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.tbar h1{font-size:2em;font-weight:900;line-height:1.2;letter-spacing:-.02em}
+.tbar .sub{font-size:.95em;color:var(--mt);margin-top:8px}
+.tabs{background:var(--bg);border-bottom:2px solid var(--brd);position:sticky;top:0;z-index:50}
+.tabs-in{max-width:920px;margin:0 auto;display:flex;flex-wrap:wrap}
+.tab{padding:14px 24px;font-weight:600;font-size:.88em;cursor:pointer;border:none;background:none;color:var(--mt);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;letter-spacing:.01em}
+.tab:hover{color:var(--ac)}.tab.on{color:var(--ac);border-bottom-color:var(--ac)}
+.main{max-width:920px;margin:0 auto;padding:0 24px 80px}
+.sec{padding:36px 0;font-size:.92em;line-height:1.75}
+.sec-t{font-size:1.5em;font-weight:900;margin-bottom:6px}
+.sec-s{font-size:.92em;color:var(--mt);margin-bottom:24px}
+.card{background:var(--bg);border:1px solid var(--brd);border-radius:var(--r);padding:24px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.inp{width:100%;padding:12px 14px;border:1px solid var(--brd);border-radius:8px;font-size:.92em;font-family:inherit;background:var(--bg)}
+.inp:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 3px rgba(200,16,46,.1)}
+.lbl{display:block;font-weight:700;font-size:.85em;margin-bottom:6px;letter-spacing:.01em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.opt{border:2px solid var(--brd);border-radius:var(--r);padding:16px 18px;cursor:pointer;background:var(--bg);transition:.2s}
+.opt:hover{border-color:var(--ac);background:#fdf0f0}
+.opt.sel{border-color:var(--ac);background:#fdf0f0}
+.opt-t{font-weight:700;font-size:.92em;margin-bottom:4px}.opt.sel .opt-t{color:var(--ac)}
+.opt-d{font-size:.82em;color:var(--mt);line-height:1.5}
+.mo{border:2px solid var(--brd);border-radius:10px;padding:12px 14px;cursor:pointer;background:var(--bg);display:flex;align-items:flex-start;gap:10px;transition:.2s}
+.mo:hover{border-color:var(--ac)}.mo.sel{border-color:var(--ac);background:#fdf0f0}
+.mo .ck{width:16px;height:16px;border:2px solid var(--brd);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:11px;color:#fff}
+.mo.sel .ck{border-color:var(--ac);background:var(--ac)}
+.mo-t{font-weight:700;font-size:.88em}.mo.sel .mo-t{color:var(--ac)}
+.mo-d{font-size:.8em;color:var(--mt);line-height:1.45;margin-top:3px}
+.gl{font-weight:800;font-size:.72em;text-transform:uppercase;letter-spacing:.08em;color:var(--mt);margin:20px 0 10px;padding-bottom:4px;border-bottom:1px solid var(--brd)}
+.nav{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+.btn{padding:12px 28px;border-radius:10px;font-size:.9em;font-weight:700;cursor:pointer;border:none;font-family:inherit;letter-spacing:.01em;transition:.2s}
+.bp{background:var(--ac);color:#fff}.bp:hover{background:#a00d25}
+.bo{background:transparent;border:2px solid var(--brd);color:var(--tx)}.bo:hover{border-color:var(--ac);color:var(--ac)}
+.bg{background:#2e7d47;color:#fff}.bg:hover{background:#256b3a}
+.btn:disabled{opacity:.3;cursor:not-allowed}
+.dots{display:flex;gap:6px;margin-bottom:28px}
+.dot{flex:1;height:6px;border-radius:3px;background:var(--brd);transition:.3s}
+.dot.on{background:var(--ac)}.dot.dn{background:#2e7d47}
+.fs{display:flex;background:var(--bgs);border-radius:var(--r);overflow:hidden;margin:12px 0}
+.fi{flex:1;padding:16px 20px;text-align:center;border-right:1px solid var(--brd)}
+.fi:last-child{border-right:none}
+.fi-l{font-size:.72em;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mt);margin-bottom:2px}
+.fi-v{font-size:.95em;font-weight:700}
+.irb{background:#fce8ec;border:1px solid #f0b0b8;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.86em;color:#8b1a1a;line-height:1.6}
+.irb a{color:#8b1a1a}
+.warn{background:#fef8e8;border:1px solid #e8d48a;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.86em;color:#6b5a10;line-height:1.6}
+.info{background:var(--bgs);border-radius:10px;padding:16px 20px;margin:14px 0;font-size:.88em;color:var(--mt);line-height:1.6}
+.tip{background:#fef8e8;border-left:4px solid #f5c518;padding:14px 18px;margin:12px 0;border-radius:0 10px 10px 0;font-size:.9em;line-height:1.6}
+.code{background:#1e1e2e;color:#cdd6f4;border-radius:10px;padding:16px 20px;margin:12px 0;font-family:'SF Mono',Consolas,monospace;font-size:.84em;overflow-x:auto;line-height:1.7}
+.code .cm{color:#89b4fa}
+.stg{background:var(--bg);border:1px solid var(--brd);border-radius:var(--r);padding:20px 24px;margin:14px 0;box-shadow:0 1px 8px rgba(0,0,0,.04)}
+.stg-t{font-weight:800;color:var(--ac);margin-bottom:8px;font-size:1.05em}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th{padding:10px 12px;border:1px solid var(--brd);text-align:left;background:var(--bgs);font-weight:700;font-size:.85em}
+td{padding:10px 12px;border:1px solid var(--brd);text-align:left;font-size:.88em}
+.out-tabs{display:flex;border-bottom:2px solid var(--brd);margin-top:16px}
+.out-tab{padding:14px 24px;font-weight:600;font-size:.88em;cursor:pointer;border:none;background:none;color:var(--mt);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit}
+.out-tab.on{color:var(--ac);border-bottom-color:var(--ac)}
+.out-p{display:none;background:var(--bg);border:1px solid var(--brd);border-top:none;border-radius:0 0 var(--r) var(--r);padding:24px;max-height:72vh;overflow-y:auto;font-size:.9em;line-height:1.7}
+.out-p.on{display:block}
+.out-p h1{font-size:1.4em;font-weight:800;margin:28px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--brd)}
+.out-p h1:first-child{margin-top:0}
+.out-p h2{font-size:1.1em;color:var(--ac);margin:20px 0 6px;font-weight:700}
+.out-p h3{font-size:.95em;margin:12px 0 4px;font-weight:600}
+.out-p .g{background:var(--bgs);border-left:3px solid var(--ac);padding:10px 16px;margin:8px 0 12px;font-size:.85em;font-style:italic;border-radius:0 8px 8px 0;color:#4a3a3a;line-height:1.6}
+.out-p .wb{background:#eef2f9;border:1px solid #c5d3e8;border-radius:8px;padding:8px 14px;margin:6px 0 10px;font-size:.82em;color:#3a4a6a;display:inline-block}
+.out-p .li{padding-left:18px;font-size:.88em}
+.out-p pre{white-space:pre-wrap;font-size:.82em;font-family:'SF Mono',Consolas,monospace;line-height:1.6}
+.toc-btn{position:fixed;right:16px;bottom:16px;background:var(--ac);color:#fff;border:none;border-radius:50%;width:52px;height:52px;font-size:1.3em;cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.2);z-index:100;font-weight:700;display:none}
+.toc-pnl{position:fixed;right:0;top:0;width:280px;height:100vh;background:var(--bg);border-left:2px solid var(--brd);box-shadow:-4px 0 24px rgba(0,0,0,.06);z-index:99;overflow-y:auto;padding:20px 18px;font-size:.82em;transform:translateX(100%);transition:.3s}
+.toc-pnl.open{transform:translateX(0)}
+.toc-pnl h3{font-weight:800;font-size:.9em;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--brd)}
+.toc-ch{padding:4px 0;font-weight:700;margin-top:10px;font-size:.88em}
+.toc-sub{padding:4px 0;padding-left:16px;color:var(--mt);font-size:.84em}
+.save-bar{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap}
+.save-bar input{width:160px;padding:10px 12px;border:1px solid var(--brd);border-radius:8px;font-size:.86em;font-family:inherit}
+.save-bar .btn{padding:10px 18px;font-size:.84em}
+.save-msg{font-size:.84em;font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="hdr"><div class="hdr-in"><span class="wm">CAMD</span><span class="ver">THESIS HANDBOOK v.1</span></div></div>
+<div class="tbar"><div class="tbar-in">
+<div class="pre-t">Information Design and Data Visualisation, MS in Vancouver, BC</div>
+<h1>Thesis Handbook</h1>
+<p class="sub">A comprehensive guide to planning, researching, designing, documenting, and defending your thesis.</p>
+</div></div>
+<div class="tabs"><div class="tabs-in" id="tabBar"></div></div>
+<div class="main">
+<div id="tp0" class="sec"></div>
+<div id="tp1" class="sec" style="display:none"></div>
+<div id="tp2" class="sec" style="display:none"></div>
+<div id="tp3" class="sec" style="display:none"></div>
+</div>
+<button class="toc-btn" id="tocBtn">&#8801;</button>
+<div class="toc-pnl" id="tocPnl"><h3>Live TOC Preview</h3><div id="tocC"></div></div>
+
+<script>
+// Safe closing tag helper
+function ct(t){return '<'+'/'+t+'>';}
+
+// ===== STATE =====
+var S={step:0,nm:'',ti:'',ad:'',ot:'',pa:'',me:[],dc:[],hr:15};
+var STEPS=6,tocOpen=false,curTab=0;
+
+// ===== DATA =====
+var OT=[
+{id:'dataviz',t:'Data Visualisation / Interactive',d:'Interactive visualisation, dashboard, exploratory data tool. Documents data acquisition, transformation, visual encoding, interaction design.'},
+{id:'infodesign',t:'Information Design Artifact',d:'Infographic system, visual explanation, diagrammatic communication. Emphasises information architecture, hierarchy, encoding, comprehension.'},
+{id:'digital',t:'Digital Product / Interface',d:'App, website, UX/UI prototype. Documents user research, interaction patterns, interface decisions, evaluation.'},
+{id:'physical',t:'Physical / Spatial Artifact',d:'Exhibition, installation, tangible data. Documents material exploration, spatial relationships, fabrication.'},
+{id:'communication',t:'Publication / Editorial Design',d:'Book, report, visual essay, zine. Documents editorial strategy, typography, layout, production.'},
+{id:'system',t:'System / Service / Toolkit',d:'Design system, framework, service blueprint. Documents stakeholder needs, architecture, implementation.'},
+{id:'speculative',t:'Speculative / Critical Design',d:'Design fiction, speculative visualisation, critical data practice. Documents speculation and audience responses.'},
+{id:'written',t:'Traditional Written Thesis',d:'Article-style, theoretical or critical analysis without primary artifact. Heavier literature and argumentation.'}
+];
+var PA=[
+{id:'qualitative',t:'Qualitative',d:'Interpretive, exploratory. Non-numerical data, rich description.'},
+{id:'quantitative',t:'Quantitative',d:'Statistical, hypothesis-driven. Numerical, replicable.'},
+{id:'mixed',t:'Mixed Methods',d:'Qualitative + quantitative with integration strategy.'},
+{id:'rtd',t:'Research through Design',d:'Design as research method. Knowledge from making and reflecting.'},
+{id:'practice',t:'Practice-Based',d:'Knowledge from creative practice. Artifact + reflection.'},
+{id:'theoretical',t:'Theoretical / Critical',d:'No empirical data. Argumentation and critical analysis.'}
+];
+var ME={
+qualitative:[{id:'ethnography',t:'Ethnography',d:'Extended fieldwork, observation, interviews.'},{id:'autoethnography',t:'Autoethnography',d:'Self-reflection as data.'},{id:'phenomenology',t:'Phenomenology',d:'Lived experience, 5\u201325 interviews.'},{id:'grounded_theory',t:'Grounded Theory',d:'Theory from iterative coding.'},{id:'case_study',t:'Case Study',d:'Bounded system, multiple sources.'},{id:'content_analysis',t:'Content / Discourse Analysis',d:'Systematic text/media examination.'},{id:'visual_analysis',t:'Visual Analysis',d:'Systematic analysis of visual artifacts or culture.'}],
+quantitative:[{id:'experimental',t:'Experimental',d:'Controlled cause-effect studies.'},{id:'survey_research',t:'Survey Research',d:'Questionnaires, statistical analysis.'},{id:'ab_testing',t:'A/B Testing',d:'Design variant comparison.'},{id:'statistical',t:'Statistical / Computational',d:'Dataset analysis.'}],
+mixed:[{id:'case_study',t:'Case Study'},{id:'survey_research',t:'Survey Research'},{id:'experimental',t:'Experimental'},{id:'content_analysis',t:'Content Analysis'},{id:'visual_analysis',t:'Visual Analysis'}],
+rtd:[{id:'rtd_method',t:'Research through Design',d:'Iterative experiments as inquiry.'},{id:'participatory',t:'Participatory / Co-Design',d:'Users as co-creators.'},{id:'action_research',t:'Action Research',d:'Plan \u2192 act \u2192 observe \u2192 reflect.'},{id:'material_driven',t:'Material / Data-Driven',d:'Exploration as inquiry.'},{id:'visual_analysis',t:'Visual Analysis'}],
+practice:[{id:'rtd_method',t:'Research through Design'},{id:'participatory',t:'Participatory Design'},{id:'action_research',t:'Action Research'},{id:'case_study',t:'Case Study'},{id:'visual_analysis',t:'Visual Analysis'}],
+theoretical:[{id:'content_analysis',t:'Content / Discourse Analysis'},{id:'historical',t:'Historical Research',d:'Primary/secondary sources.'},{id:'philosophical',t:'Philosophical / Critical',d:'Conceptual argumentation.'},{id:'comparative',t:'Comparative Analysis',d:'Systematic comparison.'},{id:'visual_analysis',t:'Visual Analysis'}]
+};
+var DCG=[
+{l:'Conversational',items:[{id:'semi_interview',t:'Semi-Structured Interviews',d:'Open-ended by theme. 8\u201315 for MS, 30\u201360 min.',irb:1},{id:'struct_interview',t:'Structured Interviews',d:'Fixed questions, same order.',irb:1},{id:'focus_group',t:'Focus Groups',d:'5\u20138 participants, facilitated.',irb:1},{id:'expert_consult',t:'Expert Consultations',d:'3\u20135 domain experts.',irb:1}]},
+{l:'Observational',items:[{id:'participant_obs',t:'Participant Observation',d:'Embed, observe, fieldnotes.',irb:1},{id:'contextual_inquiry',t:'Contextual Inquiry',d:'Real environment, real tasks.',irb:1},{id:'shadowing',t:'Shadowing',d:'Follow through routines.',irb:1}]},
+{l:'Probes and Self-Report',items:[{id:'cultural_probes',t:'Cultural Probes',d:'Kit of materials. Rich personal data.',irb:1},{id:'diary_study',t:'Diary Studies',d:'1\u20134 week entries.',irb:1},{id:'photo_elicitation',t:'Photo/Video Elicitation',d:'Images as prompts.',irb:1}]},
+{l:'Participatory',items:[{id:'codesign_workshop',t:'Co-Design Workshops',d:'Collaborative sessions. You facilitate.',irb:1},{id:'card_sorting',t:'Card Sorting',d:'Organise content into categories.',irb:1},{id:'design_games',t:'Design Games',d:'Game mechanics for insights.',irb:1}]},
+{l:'Evaluative',items:[{id:'usability_test',t:'Usability Testing',d:'Tasks, observation, metrics. 5\u20138 per round.',irb:1},{id:'think_aloud',t:'Think-Aloud',d:'Verbalise thoughts during interaction.',irb:1},{id:'heuristic_eval',t:'Heuristic Evaluation',d:'3\u20135 experts assess against principles.',irb:0},{id:'eye_tracking',t:'Eye Tracking',d:'Attention patterns, visual hierarchy.',irb:1},{id:'screen_recording',t:'Screen Recording / Interaction Logging',d:'Clicks, scroll, hover, time.',irb:1},{id:'crowd_eval',t:'Crowd-Sourced Evaluation',d:'Remote evaluation at scale.',irb:1},{id:'design_critique',t:'Design Critique / Studio Review',d:'Structured peer feedback as data.',irb:0}]},
+{l:'Survey-Based',items:[{id:'questionnaire',t:'Questionnaires / Surveys',d:'Validated scales. Pilot first.',irb:1},{id:'likert',t:'Likert Instruments',d:'Standardised agreement scales.',irb:1}]},
+{l:'Existing Data',items:[{id:'secondary_data',t:'Secondary Datasets',d:'Check for identifiable info.',irb:0},{id:'archival',t:'Archival Materials',d:'Historical documents.',irb:0},{id:'policy_docs',t:'Policy Documents',d:'Published, public.',irb:0},{id:'market_data',t:'Market Data',d:'Reports, databases.',irb:0}]}
+];
+var ADC=[];DCG.forEach(function(g){g.items.forEach(function(m){ADC.push(m);});});
+function hasIrb(){return S.dc.some(function(id){var m=ADC.find(function(x){return x.id===id;});return m&&m.irb;});}
+function tog(arr,v){var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v);}
+
+function autoSec(){
+  var ha=S.ot!=='written',hi=hasIrb();
+  var hm=['semi_interview','struct_interview','focus_group','participant_obs','contextual_inquiry','shadowing','codesign_workshop','usability_test','think_aloud','questionnaire','likert','diary_study','cultural_probes','card_sorting','design_games','photo_elicitation','expert_consult','eye_tracking','screen_recording','crowd_eval'];
+  return{
+    cs:ha,ps:S.dc.some(function(id){return hm.indexOf(id)>-1;}),af:S.dc.length>0,ev:ha,
+    ig:['digital','physical','system','communication'].indexOf(S.ot)>-1,irb:hi,
+    pos:['qualitative','rtd','practice'].indexOf(S.pa)>-1||S.me.some(function(m){return['ethnography','autoethnography','participatory','action_research'].indexOf(m)>-1;}),
+    de:['dataviz','infodesign'].indexOf(S.ot)>-1||S.dc.some(function(d){return['secondary_data','market_data'].indexOf(d)>-1;}),
+    acc:ha,dp:['dataviz','infodesign'].indexOf(S.ot)>-1||S.me.indexOf('statistical')>-1||S.dc.indexOf('secondary_data')>-1,
+    rep:['dataviz','infodesign'].indexOf(S.ot)>-1||S.me.indexOf('statistical')>-1||S.dc.indexOf('secondary_data')>-1,
+    mi:S.me.length>1,fw:S.me.some(function(m){return['ethnography','participatory','action_research'].indexOf(m)>-1;}),
+    ae:S.me.indexOf('autoethnography')>-1
+  };
+}
+
+function getTL(){
+  var ha=S.ot!=='written',th=S.pa==='theoretical',sH=S.hr*12,fH=S.hr*16,spH=S.hr*16,s1,s2,s3;
+  if(th){s1=[{n:'Literature review and theoretical framework',p:.45},{n:'Argument development',p:.25},{n:'Research proposal',p:.20},{n:'Advisor consultations',p:.10}];s2=[{n:'Deep analysis and writing',p:.50},{n:'Drafting chapters',p:.30},{n:'Feedback and revision',p:.15},{n:'Peer review',p:.05}];s3=[{n:'Final writing and editing',p:.45},{n:'Formatting and references',p:.20},{n:'Defence preparation',p:.25},{n:'Post-defence revision',p:.10}];}
+  else if(!ha){s1=[{n:'Literature review',p:.35},{n:'Research design',p:.25},{n:'Data collection planning',p:.20},{n:'Research proposal',p:.15},{n:'IRB if needed',p:.05}];s2=[{n:'Data collection',p:.40},{n:'Data analysis',p:.30},{n:'Writing',p:.20},{n:'Advisor feedback',p:.10}];s3=[{n:'Thesis writing',p:.45},{n:'Formatting',p:.20},{n:'Defence preparation',p:.25},{n:'Post-defence revision',p:.10}];}
+  else{s1=[{n:'Literature review',p:.30},{n:'Research design',p:.20},{n:'Preliminary exploration',p:.25},{n:'Research proposal',p:.15},{n:'IRB if needed',p:.10}];s2=[{n:'Design development and prototyping',p:.35},{n:'User/stakeholder testing',p:.20},{n:'Iteration',p:.25},{n:'Process documentation',p:.15},{n:'Feedback',p:.05}];s3=[{n:'Thesis writing and visual documentation',p:.40},{n:'Formatting, references, appendices',p:.15},{n:'Defence preparation',p:.25},{n:'Final design refinement',p:.10},{n:'Post-defence revision',p:.10}];}
+  return{s1:s1,s2:s2,s3:s3,sH:sH,fH:fH,spH:spH,total:sH+fH+spH};
+}
+
+// ===== TEMPLATE GENERATION =====
+function genMD(){
+  var ha=S.ot!=='written',sec=autoSec();
+  var otN='',pN='';OT.forEach(function(o){if(o.id===S.ot)otN=o.t;});PA.forEach(function(p){if(p.id===S.pa)pN=p.t;});
+  var r='# '+(S.ti||'[Title]')+'\n\nA Thesis Presented to the College of Arts, Media and Design, Northeastern University\nIn Partial Fulfilment of the Requirements for the Degree of\nMaster of Science in Information Design and Data Visualisation\n\nBy '+(S.nm||'[Name]')+'\nAdvisor: '+(S.ad||'[Advisor]')+'\n[Month, Year]\n\n**Output:** '+otN+' | **Paradigm:** '+pN+'\n\n---\n\n';
+  r+='# Abstract\n\n> 150\u2013300 words. Summarise research question, methodology, key findings, design outcomes, implications. Write this last.\n\n---\n\n';
+  r+='# Glossary of Key Terms\n\n> Define key terms that may carry different meanings across disciplines.\n\n---\n\n';
+  r+='# Chapter 1: Introduction\n\n[WORD BUDGET: 500\u20131200 words (10\u201315%)]\n\n## 1.1 Background and Context\n\n> Current state of research. Trends, challenges. Why this matters now.\n\n## 1.2 Problem Statement\n\n> The design problem. Who is affected. Consequences.\n\n## 1.3 Research Questions\n\n**Primary Question:**\n- [Main research question]\n\n**Secondary Questions:**\n- [Supporting questions]\n\n## 1.4 Thesis Statement\n\n> What this thesis will demonstrate.\n\n## 1.5 Objectives and Goals\n\n> 3\u20135 specific, measurable objectives.\n\n## 1.6 Scope and Limitations\n\n> Boundaries. Constraints.\n\n## 1.7 Significance of Study\n\n> Contribution to knowledge, applications, future potential.\n\n---\n\n';
+  r+='# Chapter 2: Literature Review\n\n[WORD BUDGET: 1000\u20132000 words (20\u201325%)]\n\n## 2.1 Theoretical Framework\n\n## 2.2 Historical Context\n\n## 2.3 Contemporary Discourse\n\n';
+  if(sec.cs)r+='## 2.4 Precedent Studies\n\n> Analyse 3\u20135 relevant projects.\n\n';
+  r+='## 2.'+(sec.cs?'5':'4')+' Synthesis and Gap Analysis\n\n---\n\n';
+  r+='# Chapter 3: Research Methodology\n\n[WORD BUDGET: 750\u20131600 words (15\u201320%)]\n\n## 3.1 Research Design\n\n> Approach: '+pN+'.\n\n';
+  var sn=2;
+  if(sec.pos){r+='## 3.'+sn+' Positionality Statement\n\n> Your identity, background, and relationship to the topic shape your research.\n\n';sn++;}
+  S.me.forEach(function(mid){var mo=null;(ME[S.pa]||[]).forEach(function(x){if(x.id===mid)mo=x;});if(mo){r+='## 3.'+sn+' Methodology: '+mo.t+'\n\n';sn++;}});
+  if(sec.mi){r+='## 3.'+sn+' Methodological Integration\n\n> Explain how your methods work together.\n\n';sn++;}
+  if(S.dc.length){r+='## 3.'+sn+' Data Collection Methods\n\n';sn++;S.dc.forEach(function(did){var d=null;ADC.forEach(function(x){if(x.id===did)d=x;});if(d)r+='### '+d.t+'\n\n';});}
+  if(sec.ps){r+='## 3.'+sn+' Participant Selection\n\n';sn++;}
+  if(sec.af){r+='## 3.'+sn+' Analysis Framework\n\n';sn++;}
+  r+='## 3.'+sn+' Design Methods\n\n';sn++;
+  if(sec.de){r+='## 3.'+sn+' Data Ethics\n\n> Where does your data come from? Who does it represent? What biases? Consider consent, representation, and impact.\n\n';sn++;}
+  if(sec.dp){r+='## 3.'+sn+' Data Provenance\n\n> Document chain of custody.\n\n';sn++;}
+  if(sec.ae&&!sec.irb){r+='## 3.'+sn+' Ethical Considerations: Autoethnography\n\n> If only your own experience, IRB likely not required. If identifiable others, consult advisor.\n\n';sn++;}
+  if(sec.irb){r+='## 3.'+sn+' Ethical Considerations\n\n> IRB process. Advisor '+(S.ad||'[PI]')+' as PI. CITI training.\n\n';if(sec.ae)r+='> Note: Autoethnographic work involving identifiable others strengthens the case for IRB.\n\n';sn++;}
+  r+='---\n\n';
+  if(ha){
+    r+='# Chapter 4: Design Process and Development\n\n[WORD BUDGET: part of 1500\u20132800 words (30\u201335%), shared with Chapter 5]\n\n## 4.1 Initial Explorations\n\n## 4.2 Design Criteria\n\n';
+    if(sec.acc)r+='## 4.3 Accessibility Considerations\n\n> Colour vision deficiency, screen readers, cognitive load, inclusive design.\n\n';
+    r+='## 4.'+(sec.acc?'4':'3')+' Iterative Development\n\n### Phase 1: Conceptual Design\n\n### Phase 2: Design Development\n\n### Phase 3: Refinement\n\n';
+    var os={dataviz:'### Data and Visualisation Development\n\n',infodesign:'### Information Architecture and Visual System\n\n',digital:'### Technical Architecture and Interaction Design\n\n',physical:'### Material and Spatial Development\n\n',communication:'### Visual System Development\n\n',system:'### Service and System Architecture\n\n',speculative:'### World-Building and Scenario Development\n\n'};
+    if(os[S.ot])r+=os[S.ot];
+    if(sec.fw)r+='### Fieldwork and Community Engagement\n\n';
+    r+='## 4.'+(sec.acc?'5':'4')+' Process Documentation\n\n---\n\n';
+    r+='# Chapter 5: Final Design Outcomes\n\n## 5.1 Design Solution Overview\n\n## 5.2 Design Features\n\n## 5.3 Visual Documentation\n\n';
+    if(sec.ig)r+='## 5.4 Implementation Guidelines\n\n';
+    r+='---\n\n';
+  }
+  var ch=ha?6:4;
+  if(sec.ev){r+='# Chapter '+ch+': Evaluation and Testing\n\n## '+ch+'.1 Testing Methodology\n\n## '+ch+'.2 User Testing\n\n## '+ch+'.3 Expert Review\n\n';if(sec.acc)r+='## '+ch+'.4 Accessibility Review\n\n';r+='## '+ch+'.'+(sec.acc?'5':'4')+' Iterations Based on Feedback\n\n---\n\n';ch++;}
+  r+='# Chapter '+ch+': Discussion\n\n[WORD BUDGET: 750\u20131600 words (15\u201320%)]\n\n## '+ch+'.1 Interpretation of Results\n\n## '+ch+'.2 Theoretical Implications\n\n## '+ch+'.3 Practical Applications\n\n## '+ch+'.4 Comparison with Existing Solutions\n\n## '+ch+'.5 Limitations and Challenges\n\n---\n\n';ch++;
+  r+='# Chapter '+ch+': Conclusion\n\n## '+ch+'.1 Summary of Findings\n\n## '+ch+'.2 Contributions to the Field\n\n## '+ch+'.3 Recommendations\n\n## '+ch+'.4 Future Research Directions\n\n## '+ch+'.5 Personal Reflection\n\n---\n\n';ch++;
+  r+='# Chapter '+ch+': References\n\n> APA or MLA, consistent. Include DOIs. Use Zotero.\n\n---\n\n';ch++;
+  r+='# Appendices\n\n';
+  if(S.dc.some(function(d){return['semi_interview','struct_interview','focus_group','expert_consult'].indexOf(d)>-1;}))r+='## Appendix: Interview Transcripts and Protocols\n\n';
+  if(S.dc.some(function(d){return['questionnaire','likert'].indexOf(d)>-1;}))r+='## Appendix: Survey Instruments and Data\n\n';
+  if(S.dc.some(function(d){return['codesign_workshop','card_sorting','design_games'].indexOf(d)>-1;}))r+='## Appendix: Workshop Documentation\n\n';
+  if(sec.irb)r+='## Appendix: Ethics and IRB Approval\n\n';
+  if(sec.rep)r+='## Appendix: Reproducibility and Open Science\n\n';
+  r+='## Appendix: Additional Visual Documentation\n\n## Appendix: Budget and Timeline\n\n';
+  return r;
+}
+
+function mdFmt(md){return md.replace(/^### (.+)$/gm,'<h3>$1'+ct('h3')).replace(/^## (.+)$/gm,'<h2>$1'+ct('h2')).replace(/^# (.+)$/gm,'<h1>$1'+ct('h1')).replace(/\*\*(.+?)\*\*/g,'<strong>$1'+ct('strong')).replace(/^> (.+)$/gm,'<div class="g">$1'+ct('div')).replace(/^\[WORD BUDGET: (.+?)\]$/gm,'<div class="wb">$1'+ct('div')).replace(/^- (.+)$/gm,'<div class="li">\u2022 $1'+ct('div')).replace(/^---$/gm,'<hr style="margin:20px 0;border:none;border-top:1.5px solid #e5e2dc">').replace(/\n\n/g,'<br/>');}
+
+function mkDoc(md){var h=md.replace(/^### (.+)$/gm,'<h3>$1'+ct('h3')).replace(/^## (.+)$/gm,'<h2>$1'+ct('h2')).replace(/^# (.+)$/gm,'<h1>$1'+ct('h1')).replace(/\*\*(.+?)\*\*/g,'<strong>$1'+ct('strong')).replace(/^> (.+)$/gm,'<blockquote>$1'+ct('blockquote')).replace(/^- (.+)$/gm,'<p style="margin-left:18pt">\u2022 $1'+ct('p')).replace(/^---$/gm,'<hr>').replace(/\n\n/g,'<br>');var css='body{font-family:Calibri;font-size:11pt;line-height:1.6;margin:72pt}h1{font-size:18pt;color:#c8102e;border-bottom:2pt solid #c8102e;margin-top:24pt;page-break-before:always}h1:first-child{page-break-before:avoid}h2{font-size:14pt;color:#c8102e;margin-top:18pt}h3{font-size:12pt;margin-top:12pt}blockquote{border-left:3pt solid #c8102e;padding:8pt 12pt;font-style:italic;font-size:10pt}';return '<html><head><meta charset="utf-8"><style>'+css+ct('style')+ct('head')+'<body>'+h+ct('body')+ct('html');}
+
+function dlF(c,m,e){var b=new Blob([c],{type:m}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=(S.ti||'thesis').replace(/[^a-z0-9]/gi,'_').toLowerCase()+e;a.click();URL.revokeObjectURL(a.href);}
+
+// ===== TABS =====
+var TAB_NAMES=['Handbook','Zotero Guide','Configure Your Thesis','Publishing Workflow'];
+function initTabs(){
+  var bar=document.getElementById('tabBar');bar.innerHTML='';
+  TAB_NAMES.forEach(function(name,i){
+    var b=document.createElement('button');b.className='tab'+(i===0?' on':'');b.textContent=name;
+    b.addEventListener('click',function(){switchTab(i);});bar.appendChild(b);
+  });
+}
+function switchTab(i){
+  curTab=i;
+  document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('on',j===i);});
+  [0,1,2,3].forEach(function(j){document.getElementById('tp'+j).style.display=j===i?'':'none';});
+  document.getElementById('tocBtn').style.display=i===2?'block':'none';
+  if(i===0)renderHandbook();if(i===1)renderZotero();if(i===2)renderConfig();if(i===3)renderPublishing();
+}
+
+// ===== HANDBOOK =====
+function renderHandbook(){
+  var e=document.getElementById('tp0');
+  e.innerHTML='<div class="sec-t">What Is a Thesis?'+ct('div')+'<p style="margin-top:8px">In its broadest sense, a thesis is a document that contains the record of a research process. It is not a standalone document, but rather the academic documentation of efforts oriented toward the advancement of knowledge.'+ct('p')+'<div class="stg"><div class="stg-t">Stage 1: Conceptualisation (Summer Y2)'+ct('div')+'<p><strong>Identify Your Research Territory:</strong> Start with your general interests. What phenomena intrigue you? What problems need solving?'+ct('p')+'<p style="margin-top:8px"><strong>Develop Initial Research Questions:</strong> Move from broad curiosity to specifics. Refine iteratively.'+ct('p')+'<p style="margin-top:8px"><strong>Establish Theoretical Foundations:</strong> Identify guiding frameworks, schools of thought, debates.'+ct('p')+'<p style="margin-top:8px">Involves <strong>preliminary literature review</strong> (<a href="https://www.zotero.org/" target="_blank" style="color:#c8102e">Zotero</a>), <strong>methodological exploration</strong>, <strong>preliminary data collection</strong>, and <strong>stakeholder consultation</strong>. Culminates in your <strong>Research Proposal</strong>. Identify if <a href="https://dhr.research.northeastern.edu/getstarted/" target="_blank" style="color:#c8102e">IRB approval</a> is needed.'+ct('p')+'<p style="font-size:.88em;color:#6b6b6b;margin-top:8px">Developed with your programme supervisor and research assistant.'+ct('p')+ct('div')+'<div class="stg"><div class="stg-t">Stage 2: Development, Testing and Iteration (Fall Y2)'+ct('div')+'<p><strong>Prototyping:</strong> Tangible forms at varying fidelities. <strong>Testing:</strong> User, technical, context testing. <strong>Iteration:</strong> Build \u2192 test \u2192 analyse \u2192 refine. <strong>Integration:</strong> Continuously reference your theoretical framework.'+ct('p')+'<p style="font-size:.88em;color:#6b6b6b;margin-top:8px">Developed during ARTG6100: Design Studio 2.'+ct('p')+ct('div')+'<div class="stg"><div class="stg-t">Stage 3: Documentation and Defence (Spring Y3)'+ct('div')+'<p><strong>Thesis Document:</strong> Comprehensive record. <strong>Process Documentation:</strong> Evolution of thinking. <strong>Visual Artifacts:</strong> Photography, drawings, video, demos. Defence is a demonstration and celebration.'+ct('p')+ct('div')+'<div class="sec-t" style="margin-top:36px">Programme Timeline'+ct('div')+'<table><thead><tr><th>Term'+ct('th')+'<th>Stage'+ct('th')+'<th>Courses'+ct('th')+'<th>Focus'+ct('th')+ct('tr')+ct('thead')+'<tbody><tr><td>Fall Y1'+ct('td')+'<td>\u2014'+ct('td')+'<td>ARTG5310, ARTG5100'+ct('td')+'<td>Coursework'+ct('td')+ct('tr')+'<tr><td>Spring Y2'+ct('td')+'<td>\u2014'+ct('td')+'<td>ARTG5100, ARTG5320'+ct('td')+'<td>Coursework'+ct('td')+ct('tr')+'<tr><td>Summer Y2'+ct('td')+'<td>Stage 1'+ct('td')+'<td>Individual advising'+ct('td')+'<td>Question, lit review, proposal, IRB'+ct('td')+ct('tr')+'<tr><td>Fall Y2'+ct('td')+'<td>Stage 2'+ct('td')+'<td>ARTG5330, ARTG6100'+ct('td')+'<td>Prototyping, testing'+ct('td')+ct('tr')+'<tr><td>Spring Y3'+ct('td')+'<td>Stage 3'+ct('td')+'<td>ARTG7890, ARTG6110'+ct('td')+'<td>Writing, defence'+ct('td')+ct('tr')+ct('tbody')+ct('table')+'<div class="sec-t" style="margin-top:36px">Defence Preparation'+ct('div')+'<p style="margin-top:8px">Present in <strong>~20 minutes</strong> (max 25). Open presentation. Committee Q and A. Post-defence revisions to CAMD repository.'+ct('p')+'<div class="sec-t" style="margin-top:36px">Formatting Guidelines'+ct('div')+'<div class="fs"><div class="fi"><div class="fi-l">Length'+ct('div')+'<div class="fi-v">5,000\u20138,000 words'+ct('div')+ct('div')+'<div class="fi"><div class="fi-l">Citations'+ct('div')+'<div class="fi-v">APA or MLA'+ct('div')+ct('div')+'<div class="fi"><div class="fi-l">Images'+ct('div')+'<div class="fi-v">300 dpi min'+ct('div')+ct('div')+'<div class="fi" style="border-right:none"><div class="fi-l">Font'+ct('div')+'<div class="fi-v">Your choice (legible)'+ct('div')+ct('div')+ct('div');
+}
+
+// ===== ZOTERO =====
+function renderZotero(){
+  var e=document.getElementById('tp1');
+  e.innerHTML='<div class="sec-t">Zotero Reference Manager'+ct('div')+'<p style="margin-top:8px"><a href="https://www.zotero.org/" target="_blank" style="color:#c8102e;font-weight:700">Zotero</a> (zoh-TAIR-oh) is a free tool to collect, organise, cite, and share research sources.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">1. Install'+ct('div')+'<p style="margin-top:8px">Download from <a href="https://www.zotero.org/download/" target="_blank" style="color:#c8102e">zotero.org/download</a>. Install <strong>desktop app</strong> and <strong>browser Connector</strong>. Create account for syncing.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">2. Collect'+ct('div')+'<p style="margin-top:8px"><strong>One-Click:</strong> Connector icon on academic pages. <strong>By Identifier:</strong> Magic wand \u2192 paste DOI/ISBN. <strong>Manual:</strong> Green + button.'+ct('p')+'<div class="tip"><strong>Start during coursework.</strong> Sources from ARTG5310/5100 may become foundational.'+ct('div')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">3. Organise'+ct('div')+'<p style="margin-top:8px"><strong>Collections:</strong> Theoretical Framework, Historical Context, Methodology, Precedents, Data Viz, To Read. <strong>Tags:</strong> Colour up to 6. <strong>Notes:</strong> Attach to items.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">4. Cite'+ct('div')+'<p style="margin-top:8px">Integrates with Word, LibreOffice, Google Docs. Auto-bibliography. One-click style switching.'+ct('p')+'<div class="tip"><strong>Set APA or MLA at the start.</strong> Committee requests a change? One click.'+ct('div')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">5. Sync'+ct('div')+'<p style="margin-top:8px">Library syncs across devices. Group Libraries for advisor/cohort.'+ct('p')+'<p style="margin-top:12px;color:#6b6b6b;font-size:.88em">Full docs: <a href="https://www.zotero.org/support/quick_start_guide" target="_blank" style="color:#c8102e">Quick Start Guide</a>'+ct('p');
+}
+
+// ===== PUBLISHING =====
+function renderPublishing(){
+  var e=document.getElementById('tp3');
+  e.innerHTML='<div class="sec-t">From Template to Finished Thesis'+ct('div')+'<p style="margin-top:8px">The configurator generates <strong>Markdown (.md)</strong> and <strong>Word-compatible (.doc)</strong> files.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">Microsoft Word'+ct('div')+'<p style="margin-top:8px">Open the .doc directly. Headings map to Word styles. Use Zotero Word plugin for citations.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">Google Docs'+ct('div')+'<p style="margin-top:8px">Upload .doc to Google Drive. Headings preserved. Use Zotero Connector.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">Adobe InDesign (via Pandoc)'+ct('div')+'<p style="margin-top:8px">Use <a href="https://pandoc.org/" target="_blank" style="color:#c8102e;font-weight:700">Pandoc</a> to convert Markdown to ICML.'+ct('p')+'<p style="margin-top:10px;font-weight:700">Step 1: Install Pandoc'+ct('p')+'<p style="font-size:.88em;color:#6b6b6b">Open <strong>Terminal</strong> on macOS (Applications \u2192 Utilities \u2192 Terminal) or <strong>Command Prompt</strong> on Windows (search "cmd" in Start menu):'+ct('p')+'<div class="code"><span class="cm"># macOS (Homebrew)</span><br>brew install pandoc<br><br><span class="cm"># Windows (Chocolatey)</span><br>choco install pandoc<br><br><span class="cm"># Or download from pandoc.org/installing.html</span>'+ct('div')+'<p style="margin-top:14px;font-weight:700">Step 2: Convert'+ct('p')+'<p style="font-size:.88em;color:#6b6b6b">In Terminal or Command Prompt, navigate to your file:'+ct('p')+'<div class="code">pandoc -s -f markdown -t icml -o thesis.icml thesis.md'+ct('div')+'<p style="margin-top:14px;font-weight:700">Step 3: Place in InDesign'+ct('p')+'<p><strong>File \u2192 Place</strong>, select the .icml. Paragraph styles appear automatically.'+ct('p')+'<div class="tip"><strong>Live updates:</strong> Regenerate .icml and InDesign updates via Links panel.'+ct('div')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">Affinity Publisher'+ct('div')+'<p style="margin-top:8px">Place the .doc directly. Heading hierarchy imported.'+ct('p')+'<div class="sec-t" style="font-size:1.15em;margin-top:28px">Pandoc Quick Reference'+ct('div')+'<table><thead><tr><th>To'+ct('th')+'<th>Command'+ct('th')+ct('tr')+ct('thead')+'<tbody><tr><td>InDesign'+ct('td')+'<td style="font-family:monospace;font-size:.85em">pandoc -s -f markdown -t icml -o out.icml in.md'+ct('td')+ct('tr')+'<tr><td>Word (.docx)'+ct('td')+'<td style="font-family:monospace;font-size:.85em">pandoc -s -f markdown -t docx -o out.docx in.md'+ct('td')+ct('tr')+'<tr><td>PDF'+ct('td')+'<td style="font-family:monospace;font-size:.85em">pandoc -s -f markdown -o out.pdf in.md'+ct('td')+ct('tr')+'<tr><td>HTML'+ct('td')+'<td style="font-family:monospace;font-size:.85em">pandoc -s -f markdown -t html -o out.html in.md'+ct('td')+ct('tr')+ct('tbody')+ct('table');
+}
+
+// ===== CONFIGURATOR =====
+function renderConfig(){
+  var e=document.getElementById('tp2');
+  var h='<div class="save-bar"><span style="font-size:.88em;font-weight:700">Save/Load:</span><input id="saveCode" placeholder="Code (e.g. JD42)" maxlength="20"><button class="btn bo" id="btnSave">Save</button><button class="btn bo" id="btnLoad">Load</button><span id="saveMsg" class="save-msg">'+ct('span')+ct('div')+'<div id="wizC">'+ct('div');
+  e.innerHTML=h;
+  document.getElementById('btnSave').addEventListener('click',doSave);
+  document.getElementById('btnLoad').addEventListener('click',doLoad);
+  renderStep();
+}
+
+function renderStep(){
+  var el=document.getElementById('wizC');if(!el)return;
+  if(S.step>=STEPS){renderOutput(el);updateToc();return;}
+  var d='<div class="dots">';for(var i=0;i<STEPS;i++)d+='<div class="dot '+(i<S.step?'dn':i===S.step?'on':'')+'">'+ct('div');d+=ct('div');
+  var h=d;
+  if(S.step===0){
+    h+='<div class="sec-t">Student Information'+ct('div')+'<p class="sec-s">Basic details for your thesis title page.'+ct('p')+'<div class="card"><div style="margin-bottom:18px"><label class="lbl">Your Name'+ct('label')+'<input class="inp" id="fNm" value="'+esc(S.nm)+'" placeholder="Full name">'+ct('div')+'<div style="margin-bottom:18px"><label class="lbl">Thesis Title'+ct('label')+'<input class="inp" id="fTi" value="'+esc(S.ti)+'" placeholder="Descriptive and engaging">'+ct('div')+'<div style="margin-bottom:18px"><label class="lbl">Advisor'+ct('label')+'<input class="inp" id="fAd" value="'+esc(S.ad)+'" placeholder="Faculty advisor">'+ct('div')+'<div class="fs"><div class="fi"><div class="fi-l">Institution'+ct('div')+'<div class="fi-v">Northeastern University'+ct('div')+ct('div')+'<div class="fi"><div class="fi-l">Degree'+ct('div')+'<div class="fi-v">MS in IDDV'+ct('div')+ct('div')+'<div class="fi" style="border-right:none"><div class="fi-l">Campus'+ct('div')+'<div class="fi-v">Vancouver'+ct('div')+ct('div')+ct('div')+ct('div')+'<div class="nav"><div>'+ct('div')+'<button class="btn bp" id="nxBtn">Continue \u2192'+ct('button')+ct('div');
+  }
+  else if(S.step===1){
+    h+='<div class="sec-t">Thesis Output Type'+ct('div')+'<p class="sec-s">What is the primary form of your thesis deliverable?'+ct('p')+'<div class="grid">';
+    OT.forEach(function(o){h+='<div class="opt'+(S.ot===o.id?' sel':'')+'" data-v="'+o.id+'"><div class="opt-t">'+o.t+ct('div')+'<div class="opt-d">'+o.d+ct('div')+ct('div');});
+    h+=ct('div')+navH(true,!S.ot);
+  }
+  else if(S.step===2){
+    h+='<div class="sec-t">Research Paradigm'+ct('div')+'<p class="sec-s">Your epistemological approach.'+ct('p')+'<div class="grid">';
+    PA.forEach(function(p){h+='<div class="opt'+(S.pa===p.id?' sel':'')+'" data-v="'+p.id+'"><div class="opt-t">'+p.t+ct('div')+'<div class="opt-d">'+p.d+ct('div')+ct('div');});
+    h+=ct('div')+navH(true,!S.pa);
+  }
+  else if(S.step===3){
+    var avail=ME[S.pa]||[];
+    h+='<div class="sec-t">Methodology'+ct('div')+'<p class="sec-s">Select one or more.'+ct('p')+'<div class="grid">';
+    avail.forEach(function(m){h+='<div class="mo'+(S.me.indexOf(m.id)>-1?' sel':'')+'" data-v="'+m.id+'"><span class="ck">'+(S.me.indexOf(m.id)>-1?'\u2713':'')+ct('span')+'<div><div class="mo-t">'+m.t+ct('div')+(m.d?'<div class="mo-d">'+m.d+ct('div'):'')+ct('div')+ct('div');});
+    h+=ct('div');
+    if(S.me.indexOf('autoethnography')>-1)h+='<div class="warn" style="background:#fff8e1;border-color:#ffca28;color:#5d4037"><strong>Note on Autoethnography and IRB:</strong> If only your own experience, IRB likely not required. If identifiable others, consult advisor.'+ct('div');
+    if(S.me.length>1)h+='<div class="info"><strong>Multiple methodologies.</strong> Template will include a Methodological Integration section.'+ct('div');
+    h+=navH(true,S.me.length===0);
+  }
+  else if(S.step===4){
+    h+='<div class="sec-t">Data Collection'+ct('div')+'<p class="sec-s">Select all methods. Template auto-includes relevant sections.'+ct('p');
+    DCG.forEach(function(g){
+      h+='<div class="gl">'+g.l+ct('div')+'<div class="grid">';
+      g.items.forEach(function(m){
+        h+='<div class="mo'+(S.dc.indexOf(m.id)>-1?' sel':'')+'" data-v="'+m.id+'" data-grp="dc"><span class="ck">'+(S.dc.indexOf(m.id)>-1?'\u2713':'')+ct('span')+'<div><div class="mo-t">'+m.t+(m.irb?' <span style="font-size:.7em;color:#c8102e;font-weight:800;margin-left:6px">IRB LIKELY'+ct('span'):'')+ct('div')+(m.d?'<div class="mo-d">'+m.d+ct('div'):'')+ct('div')+ct('div');
+      });
+      h+=ct('div');
+    });
+    if(hasIrb())h+='<div class="irb"><strong>IRB Review Likely Required.</strong> <a href="https://dhr.research.northeastern.edu/getstarted/" target="_blank">Start IRB process</a> during Summer Y2. Advisor '+(S.ad?'('+esc(S.ad)+') ':'')+'as PI. <a href="https://about.citiprogram.org/" target="_blank">CITI training</a> required.'+ct('div');
+    if(S.dc.length>5)h+='<div class="warn">'+S.dc.length+' methods. With 5,000\u20138,000 words, ensure you can document all.'+ct('div');
+    if(S.pa==='theoretical'&&S.dc.length===0)h+='<div class="info">A theoretical thesis may not require primary data collection.'+ct('div');
+    h+=navH(true,S.pa!=='theoretical'&&S.dc.length===0);
+  }
+  else if(S.step===5){
+    var tl=getTL();
+    h+='<div class="sec-t">Timeline and Effort'+ct('div')+'<p class="sec-s">Phase-by-phase effort mapped to the MSIDDV course sequence.'+ct('p');
+    h+='<div class="card"><label class="lbl">Hours per week for thesis work'+ct('label')+'<input type="number" class="inp" id="fHr" style="width:140px" value="'+S.hr+'" min="1" max="40"><p style="font-size:.85em;color:#6b6b6b;margin-top:10px"><strong>Total:</strong> ~'+tl.total+' hours'+ct('p')+ct('div');
+    h+='<div class="card">';
+    [{t:'Stage 1: Conceptualisation (Summer Y2)',h:tl.sH,p:tl.s1},{t:'Stage 2: Development (Fall Y2)',h:tl.fH,p:tl.s2},{t:'Stage 3: Documentation and Defence (Spring Y3)',h:tl.spH,p:tl.s3}].forEach(function(stage,si){
+      h+='<div style="margin-bottom:'+(si<2?'20':'0')+'px"><div style="font-weight:800;font-size:.92em;margin-bottom:8px">'+stage.t+' <span style="font-weight:400;color:#6b6b6b">(~'+stage.h+' hrs)'+ct('span')+ct('div');
+      stage.p.forEach(function(p){h+='<div style="font-size:.86em;padding:3px 0;color:#444">\u2022 <strong>'+p.n+':</strong> ~'+Math.round(stage.h*p.p)+' hrs ('+Math.round(p.p*100)+'%)'+ct('div');});
+      h+=ct('div');
+    });
+    h+=ct('div');
+    if(hasIrb())h+='<div class="irb"><strong>Reminder:</strong> Begin <a href="https://dhr.research.northeastern.edu/getstarted/" target="_blank">IRB</a> at Summer Y2 start.'+ct('div');
+    h+='<div class="nav"><button class="btn bo" id="bkBtn">\u2190 Back'+ct('button')+'<button class="btn bg" id="genBtn">Generate Template \u2192'+ct('button')+ct('div');
+  }
+
+  el.innerHTML=h;
+  bindStep();
+  updateToc();
+}
+
+function navH(hasBk,dis){return '<div class="nav">'+(hasBk?'<button class="btn bo" id="bkBtn">\u2190 Back'+ct('button'):'<div>'+ct('div'))+'<button class="btn bp" id="nxBtn"'+(dis?' disabled':'')+'>Continue \u2192'+ct('button')+ct('div');}
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+function saveFields(){
+  if(S.step===0){var n=document.getElementById('fNm'),t=document.getElementById('fTi'),a=document.getElementById('fAd');if(n)S.nm=n.value;if(t)S.ti=t.value;if(a)S.ad=a.value;}
+  if(S.step===5){var h=document.getElementById('fHr');if(h)S.hr=parseInt(h.value)||15;}
+}
+
+function bindStep(){
+  var bk=document.getElementById('bkBtn'),nx=document.getElementById('nxBtn'),gen=document.getElementById('genBtn');
+  if(bk)bk.addEventListener('click',function(){saveFields();S.step--;renderStep();});
+  if(nx)nx.addEventListener('click',function(){saveFields();S.step++;renderStep();});
+  if(gen)gen.addEventListener('click',function(){saveFields();S.step=STEPS;renderStep();});
+  // Single select
+  if([1,2].indexOf(S.step)>-1){
+    document.querySelectorAll('#wizC .opt').forEach(function(el){
+      el.addEventListener('click',function(){
+        var v=this.dataset.v;
+        if(S.step===1)S.ot=v;
+        if(S.step===2){S.pa=v;S.me=[];}
+        renderStep();
+      });
+    });
+  }
+  // Multi select methodology
+  if(S.step===3){
+    document.querySelectorAll('#wizC .mo').forEach(function(el){
+      el.addEventListener('click',function(){tog(S.me,this.dataset.v);renderStep();});
+    });
+  }
+  // Multi select data
+  if(S.step===4){
+    document.querySelectorAll('#wizC .mo[data-grp="dc"]').forEach(function(el){
+      el.addEventListener('click',function(){tog(S.dc,this.dataset.v);renderStep();});
+    });
+  }
+}
+
+// ===== OUTPUT =====
+function renderOutput(el){
+  saveFields();var md=genMD();
+  var h='<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px"><div><div style="font-size:1.2em;font-weight:800">'+esc(S.ti||'Thesis Template')+ct('div')+'<span style="font-size:.88em;color:#6b6b6b">'+esc(S.nm)+' \u2014 Advisor: '+esc(S.ad||'TBD')+ct('span')+ct('div')+'<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn bo" id="editBtn">\u2190 Edit'+ct('button')+'<button class="btn bp" id="dlMd">.md'+ct('button')+'<button class="btn bp" id="dlDoc">.doc (Word)'+ct('button')+ct('div')+ct('div');
+  h+='<div class="info"><strong>Note:</strong> The .doc may show a format warning in Word. Use <strong>File \u2192 Save As \u2192 .docx</strong> to convert. For native .docx, see Publishing Workflow tab.'+ct('div');
+  h+='<div class="out-tabs"><button class="out-tab on" data-t="fmt">Formatted'+ct('button')+'<button class="out-tab" data-t="raw">Markdown'+ct('button')+ct('div');
+  h+='<div class="out-p on" id="opFmt">'+mdFmt(md)+ct('div');
+  h+='<div class="out-p" id="opRaw"><pre>'+esc(md)+ct('pre')+ct('div');
+  el.innerHTML=h;
+  document.getElementById('editBtn').addEventListener('click',function(){S.step=0;renderStep();});
+  document.getElementById('dlMd').addEventListener('click',function(){dlF(genMD(),'text/markdown','.md');});
+  document.getElementById('dlDoc').addEventListener('click',function(){dlF(mkDoc(genMD()),'application/msword','.doc');});
+  document.querySelectorAll('.out-tab').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      document.querySelectorAll('.out-tab').forEach(function(t){t.classList.remove('on');});
+      document.querySelectorAll('.out-p').forEach(function(p){p.classList.remove('on');});
+      this.classList.add('on');
+      document.getElementById(this.dataset.t==='fmt'?'opFmt':'opRaw').classList.add('on');
+    });
+  });
+}
+
+// ===== TOC =====
+function updateToc(){
+  var el=document.getElementById('tocC');if(!el)return;
+  var ha=S.ot!=='written',sec=autoSec(),its=[];
+  its.push({t:'Glossary',c:1});its.push({t:'Ch 1: Introduction',c:1});its.push({t:'Ch 2: Literature Review',c:1});
+  if(sec.cs)its.push({t:'Precedent Studies'});
+  its.push({t:'Ch 3: Methodology',c:1});
+  if(sec.pos)its.push({t:'Positionality'});
+  S.me.forEach(function(m){var o=null;(ME[S.pa]||[]).forEach(function(x){if(x.id===m)o=x;});if(o)its.push({t:o.t});});
+  if(sec.mi)its.push({t:'Integration'});
+  if(S.dc.length)its.push({t:'Data Collection'});
+  if(sec.ps)its.push({t:'Participants'});
+  if(sec.de)its.push({t:'Data Ethics'});
+  if(sec.dp)its.push({t:'Provenance'});
+  if(sec.irb||sec.ae)its.push({t:'Ethics'});
+  if(ha){its.push({t:'Ch 4: Design Process',c:1});if(sec.acc)its.push({t:'Accessibility'});its.push({t:'Ch 5: Outcomes',c:1});}
+  if(sec.ev)its.push({t:'Evaluation',c:1});
+  its.push({t:'Discussion',c:1});its.push({t:'Conclusion',c:1});its.push({t:'References',c:1});its.push({t:'Appendices',c:1});
+  var h='';its.forEach(function(it){h+='<div class="'+(it.c?'toc-ch':'toc-sub')+'">'+it.t+ct('div');});
+  el.innerHTML=h;
+}
+
+// ===== SAVE/LOAD =====
+function showMsg(t,c){var el=document.getElementById('saveMsg');if(!el)return;el.textContent=t;el.style.color=c;setTimeout(function(){el.textContent='';},3000);}
+async function doSave(){
+  saveFields();var code=(document.getElementById('saveCode')||{}).value||'';code=code.trim();
+  if(!code||code.length<2){showMsg('Need 2+ chars','#c62828');return;}
+  try{await window.storage.set('t_'+code,JSON.stringify(S));showMsg('Saved!','#2e7d47');}catch(e){showMsg('Failed','#c62828');}
+}
+async function doLoad(){
+  var code=(document.getElementById('saveCode')||{}).value||'';code=code.trim();
+  if(!code){showMsg('Enter code','#c62828');return;}
+  try{var r=await window.storage.get('t_'+code);if(r&&r.value){var d=JSON.parse(r.value);S.nm=d.nm||'';S.ti=d.ti||'';S.ad=d.ad||'';S.ot=d.ot||'';S.pa=d.pa||'';S.me=d.me||[];S.dc=d.dc||[];S.hr=d.hr||15;S.step=0;showMsg('Loaded!','#2e7d47');renderStep();}else showMsg('Not found','#c62828');}catch(e){showMsg('Not found','#c62828');}
+}
+
+// ===== INIT =====
+document.getElementById('tocBtn').addEventListener('click',function(){
+  tocOpen=!tocOpen;document.getElementById('tocPnl').classList.toggle('open',tocOpen);
+});
+initTabs();renderHandbook();
+</script>
+</body>
+</html>
